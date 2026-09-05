@@ -1,0 +1,67 @@
+name: Apply waitlist frontend integration
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/waitlist-patch.yml
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Patch index
+        run: |
+          python3 <<'PY'
+          from pathlib import Path
+          p=Path('index.html')
+          s=p.read_text()
+          meta='<meta name="description" content="看店勢 DianInsight 將每日業績、區域表現、門市排名、AI 分析與營運通知整合成一套真正能讓主管快速掌握現場狀況的管理平台。" />'
+          assert meta in s
+          s=s.replace(meta,meta+'\n  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>',1)
+          css='.signup-message { min-height:20px; margin-top:12px; color:var(--green); font-size:12px; }'
+          assert css in s
+          s=s.replace(css,'.signup button:disabled { cursor:wait; opacity:.72; }\n    .turnstile-wrap { min-height:70px; margin:16px auto 0; display:flex; align-items:center; justify-content:center; }\n    '+css+'\n    .signup-message.is-error { color:#ff9a9a; }',1)
+          old='<form class="signup" id="signupForm"><input id="email" type="email" autocomplete="email" inputmode="email" placeholder="你的 Email" aria-label="Email" required><button type="submit">通知我</button></form><div class="signup-message" id="signupMessage" aria-live="polite"></div>'
+          new='<form class="signup" id="signupForm"><input id="email" type="email" autocomplete="email" inputmode="email" placeholder="你的 Email" aria-label="Email" required><button id="signupButton" type="submit">通知我</button></form><div class="turnstile-wrap"><div class="cf-turnstile" data-sitekey="0x4AAAAAAEo7_ehxh774UgJj" data-theme="dark"></div></div><div class="signup-message" id="signupMessage" aria-live="polite"></div>'
+          assert old in s
+          s=s.replace(old,new,1)
+          oldjs="""    const signupForm=document.getElementById('signupForm');
+    const signupMessage=document.getElementById('signupMessage');
+    signupForm.addEventListener('submit',event=>{event.preventDefault();const input=document.getElementById('email');if(!input.checkValidity()){input.reportValidity();return}signupMessage.textContent='預覽模式：Email 尚未真的送出，但這裡未來可以直接接 API。';input.value=''});"""
+          newjs="""    const signupForm=document.getElementById('signupForm');
+    const signupMessage=document.getElementById('signupMessage');
+    const signupButton=document.getElementById('signupButton');
+    const WAITLIST_ENDPOINT='https://dianinsight-preview-waitlist.nkhs9412235.workers.dev/waitlist';
+    function setSignupMessage(message,isError=false){signupMessage.textContent=message;signupMessage.classList.toggle('is-error',isError)}
+    signupForm.addEventListener('submit',async event=>{
+      event.preventDefault();
+      const input=document.getElementById('email');
+      if(!input.checkValidity()){input.reportValidity();return}
+      const turnstileToken=window.turnstile?.getResponse?.()||'';
+      if(!turnstileToken){setSignupMessage('請先完成人機驗證。',true);return}
+      const originalText=signupButton.textContent;
+      signupButton.disabled=true;signupButton.textContent='送出中…';setSignupMessage('');
+      try{
+        const response=await fetch(WAITLIST_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:input.value.trim(),turnstileToken})});
+        let result={};try{result=await response.json()}catch{}
+        if(!response.ok||!result.ok)throw new Error('WAITLIST_SUBMIT_FAILED');
+        input.value='';setSignupMessage('收到！我們會在 DianInsight 有新消息時通知你。');window.turnstile?.reset?.();
+      }catch(error){console.error('Waitlist submit failed',error);setSignupMessage('目前無法送出，請稍後再試。',true);window.turnstile?.reset?.();}
+      finally{signupButton.disabled=false;signupButton.textContent=originalText;}
+    });"""
+          assert oldjs in s
+          s=s.replace(oldjs,newjs,1)
+          p.write_text(s)
+          PY
+      - name: Commit integration
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "feat: connect preview waitlist form"
+          git push origin main
