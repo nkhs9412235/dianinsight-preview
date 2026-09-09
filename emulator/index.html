@@ -5,7 +5,156 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>看店勢 DianInsight — High Fidelity Emulator v4</title>
 <style>
-:root{--bg:#18191c;--panel:#23252a;--panel2:#202226;--border:#34373d;--muted:#9da3ad;--text:#f4f5f7;--blue:#2d97ed;--blue2:#1678d2;--danger:#ff5e69;--pill:#eceff2;--pillText:#2d3035;--success:#6bd28d;--warn:#f1c85d}*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}body{min-height:100vh}button,input,select{font:inherit}button{cursor:pointer}.app{max-width:480px;margin:0 auto;min-height:100vh;background:var(--bg)}.topbar{height:58px;background:#1e2024;border-bottom:1px solid #2b2e33;display:flex;align-items:center;position:sticky;top:0;z-index:30}.topbar-inner{width:100%;display:grid;grid-template-columns:52px 1fr 72px;align-items:center;padding:0 10px}.menu{background:none;border:0;color:white;font-size:25px;text-align:left;padding:8px}.brand{display:flex;align-items:center;justify-content:center;gap:8px;font-weight:700}.logo-mark{width:34px;height:20px;border-radius:50%;background:radial-gradient(circle at 30% 50%,#18a6ff,transparent 45%),linear-gradient(130deg,#4b35ff,#00b9ff);box-shadow:0 0 10px #0078ff88}.brand small{font-size:11px;color:#d8dbe0;font-weight:600}.status-pill{justify-self:end;border:1px solid #8e3040;color:#ff7d8c;border-radius:999px;padding:3px 8px;font-size:11px}.screen{padding:16px 14px 34px}h1{font-size:18px;margin:0 0 14px}h2{font-size:15px;margin:22px 0 10px}.card{background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:13px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:9px}.metric{min-height:78px}.metric .k{font-size:11px;color:var(--muted);margin-bottom:8px}.metric .v{font-size:22px;font-weight:700;letter-spacing:.2px}.metric .sub{font-size:11px;color:var(--muted);margin-top:6px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}label{display:block;font-size:11px;color:var(--muted);margin:0 0 5px}input,select{width:100%;background:#1b1d21;border:1px solid #383b42;color:var(--text);border-radius:5px;padding:9px 10px;min-height:40px}.quick{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.quick button{border:0;background:var(--pill);color:var(--pillText);border-radius:999px;padding:5px 9px;font-size:11px}.btn{border:0;border-radius:5px;min-height:40px;padding:9px 14px;font-weight:700}.btn.primary{background:var(--blue);color:#fff}.btn.secondary{background:#2b2e34;color:#d9dce1;border:1px solid #41454c}.btn.danger{background:#772c34;color:#ffdfe3}.btn.block{width:100%}.toolbar{display:flex;gap:8px;align-items:center}.toolbar>*{flex:1}.ai-card{position:relative}.ai-card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:6px 0 0 6px;background:#2d97ed}.ai-card.warn:before{background:#ff666f}.ai-title{font-size:13px;font-weight:700;margin-bottom:7px}.ai-body{font-size:12px;line-height:1.6;color:#e5e7ea}.ai-body ul{padding-left:18px;margin:6px 0}.table{width:100%;border-collapse:collapse;font-size:12px}.table th,.table td{border-bottom:1px solid #383b42;padding:8px 5px;text-align:left}.table th{font-size:10px;color:var(--muted);font-weight:600}.upload{display:grid;gap:8px}.filebox{background:#1a1c20;border:1px solid #3a3d44;border-radius:4px;padding:10px;color:#aaa;font-size:12px}.user-card{display:grid;gap:9px;margin-bottom:8px}.user-head{display:flex;justify-content:space-between;align-items:start;gap:10px}.user-name{font-weight:700}.user-email{font-size:11px;color:#a9afb7;margin-top:2px}.meta{display:grid;grid-template-columns:72px 1fr;gap:4px 8px;font-size:12px}.meta .k{color:#9096a0}.badge{display:inline-block;padding:2px 7px;border-radius:999px;font-size:10px;border:1px solid #48505a}.badge.good{color:#8ee0a9;border-color:#39724d}.badge.wait{color:#f5d576;border-color:#78642f}.filter-panel{display:grid;gap:8px}.filter-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}.resultline{display:flex;justify-content:space-between;align-items:center;color:#aab0b8;font-size:11px;margin:10px 0}.drawer{position:fixed;inset:0;z-index:60;display:none}.drawer.show{display:block}.scrim{position:absolute;inset:0;background:#0008}.drawer-panel{position:absolute;left:0;top:0;bottom:0;width:min(88vw,380px);background:#202226;border-right:1px solid #363941;padding:18px 14px;overflow:auto}.drawer-title{display:flex;align-items:center;gap:10px;margin-bottom:18px;font-weight:700}.nav a{display:flex;align-items:center;gap:10px;color:#e8eaed;text-decoration:none;padding:12px 10px;border-radius:6px;font-size:14px}.nav a.active,.nav a:hover{background:#2a2d32}.nav .sep{height:1px;background:#34373d;margin:10px 0}.hidden{display:none!important}.tabbar{display:flex;gap:6px;margin-bottom:12px}.tabbar button{flex:1;background:#24272c;border:1px solid #393d44;color:#b8bdc5;border-radius:5px;padding:9px 5px;font-size:12px}.tabbar button.active{background:#1678d2;color:white;border-color:#1678d2}.small{font-size:11px;color:var(--muted)}.empty{padding:18px;text-align:center;color:#8f949c;font-size:12px}@media(min-width:760px){.app{max-width:1180px}.screen{padding:24px}.grid2{grid-template-columns:repeat(5,1fr)}.user-list{display:grid;grid-template-columns:1fr 1fr;gap:10px}}
-</style></head><body><div class="app"><header class="topbar"><div class="topbar-inner"><button class="menu" id="menuBtn">☰</button><div class="brand"><span class="logo-mark"></span><span>看店勢 <small>DianInsight</small></span></div><span class="status-pill">模擬器</span></div></header><main id="main"></main></div><div class="drawer" id="drawer"><div class="scrim" id="scrim"></div><aside class="drawer-panel"><div class="drawer-title"><span class="logo-mark"></span>看店勢 DianInsight</div><nav class="nav"><a href="#" data-page="dashboard">儀表板</a><a href="#" data-page="sales">銷售</a><a href="#" data-page="rankings">排行榜</a><a href="#" data-page="notifications">通知</a><a href="#" data-page="recipients">收件人</a><div class="sep"></div><a href="#" data-page="organization">組織</a><a href="#" data-page="security">安全紀錄</a><a href="#" data-page="modules">模組</a></nav></aside></div><script>
-const main=document.getElementById('main'),drawer=document.getElementById('drawer');document.getElementById('menuBtn').onclick=()=>drawer.classList.add('show');document.getElementById('scrim').onclick=()=>drawer.classList.remove('show');document.querySelectorAll('[data-page]').forEach(a=>a.onclick=e=>{e.preventDefault();drawer.classList.remove('show');render(a.dataset.page)});const users=[{name:'Bob',id:'M088',email:'bob@gmail.com',access:'門市主管',scope:'門市：A002 — 台北B店',status:'等待啟用',lang:'繁體中文',invite:'邀請已寄出'},{name:'C001',id:'C001',email:'c001@gmail.com',access:'區域主管',scope:'區域：北一區',status:'已啟用',lang:'繁體中文',invite:'邀請已寄出'},{name:'RIO',id:'M006',email:'rio@gmail.com',access:'門市主管',scope:'門市：B001 — 桃園A店',status:'等待啟用',lang:'English',invite:'邀請已寄出'},{name:'Simon',id:'M089',email:'simon@gmail.com',access:'區域主管',scope:'區域：北二區',status:'已啟用',lang:'繁體中文',invite:'邀請已寄出'}];function shell(t,b){main.innerHTML=`<section class="screen"><h1>${t}</h1>${b}</section>`}function metric(k,v){return `<div class="card metric"><div class="k">${k}</div><div class="v">${v}</div></div>`}function dashboard(){shell('儀表板',`<div class="form-grid"><div><label>開始日期</label><input value="2026-08-01"></div><div><label>結束日期</label><input value="2026-08-31"></div></div><div class="quick"><button>今天</button><button>昨天</button><button>最近 7 天</button><button>最近 30 天</button><button>本週</button><button>上週</button><button>本月</button><button>上月</button></div><h2>營運概況</h2><div class="grid2">${metric('營收','1,063,795')}${metric('目標','1,440,000')}${metric('達成率','73.9%')}${metric('交易數','5408')}${metric('來客數','5875')}</div><h2>AI 分析結果</h2><button class="btn primary" id="aiBtn">AI 分析</button><div id="aiOutput" class="hidden"><div class="card ai-card" style="margin-top:10px"><div class="ai-title">摘要</div><div class="ai-body">整體營收 1,063,795 元，目標達成率 73.87%，較去年同期成長 3.62%。</div></div><div class="card ai-card warn" style="margin-top:8px"><div class="ai-title">⚠ 異常分析</div><div class="ai-body">台北C店成長率為 -4.43%，呈現異常下降情形。目前資料不足，無法判斷確切原因。</div></div></div>`);document.getElementById('aiBtn').onclick=()=>document.getElementById('aiOutput').classList.remove('hidden')}function sales(){shell('銷售',`<div class="form-grid"><div><label>開始日期</label><input value="2026-08-01"></div><div><label>結束日期</label><input value="2026-08-31"></div></div><div class="quick"><button>今天</button><button>昨天</button><button>最近 7 天</button><button>最近 30 天</button></div><h2>業績指標</h2><div class="grid2">${metric('營收','1,063,795')}${metric('目標','1,440,000')}${metric('達成率','73.9%')}${metric('交易數','5408')}${metric('來客數','5875')}</div><h2>上傳 Excel</h2><div class="card upload"><div class="small">使用範本可以快速匯入業績資料。</div><div class="filebox">下載 Excel 範本</div><input type="file"><button class="btn primary">上傳資料</button></div>`)}function organization(){shell('組織',`<div class="tabbar"><button>區域列表</button><button>分店列表</button><button class="active">使用者</button></div><div class="card" style="margin-bottom:10px"><button class="btn primary block" id="addUserBtn">＋ 新增使用者</button><div id="addForm" class="hidden" style="margin-top:10px"><div class="form-grid"><div><label>姓名</label><input></div><div><label>員工編號</label><input></div></div><div style="margin-top:8px"><label>Email</label><input type="email"></div><div class="form-grid" style="margin-top:8px"><div><label>權限</label><select><option>門市主管</option><option>區域主管</option><option>管理員</option></select></div><div><label>語言</label><select><option>繁體中文</option><option>English</option></select></div></div><div style="margin-top:8px"><label>管理範圍</label><select><option>台北A店</option><option>台北B店</option><option>北一區</option></select></div></div></div><div class="card filter-panel"><div><label>搜尋</label><input id="q" placeholder="搜尋姓名、使用者名稱或電子郵件"></div><div class="filter-row"><div><label>權限</label><select id="accessF"><option value="">所有權限</option><option>門市主管</option><option>區域主管</option></select></div><div><label>狀態</label><select><option>所有狀態</option><option>等待啟用</option><option>已啟用</option></select></div></div><button class="btn primary block" id="searchBtn">搜尋</button></div><div class="resultline"><span id="count">共 ${users.length} 位使用者</span></div><div id="userList" class="user-list"></div>`);const add=document.getElementById('addForm'),btn=document.getElementById('addUserBtn');btn.onclick=()=>add.classList.toggle('hidden');renderUsers(users);document.getElementById('searchBtn').onclick=()=>{const q=document.getElementById('q').value.toLowerCase(),a=document.getElementById('accessF').value,f=users.filter(u=>(!q||(`${u.name} ${u.id} ${u.email}`).toLowerCase().includes(q))&&(!a||u.access===a));renderUsers(f);document.getElementById('count').textContent=`共 ${f.length} 位使用者`}}function renderUsers(list){document.getElementById('userList').innerHTML=list.map(u=>`<div class="card user-card"><div class="user-head"><div><div class="user-name">${u.name}</div><div class="user-email">${u.id} · ${u.email}</div></div><span class="badge ${u.status==='已啟用'?'good':'wait'}">${u.status}</span></div><div class="meta"><div class="k">權限</div><div>${u.access}</div><div class="k">管理範圍</div><div>${u.scope}</div><div class="k">語言</div><div>${u.lang}</div></div><button class="btn primary block">重新寄送邀請</button></div>`).join('')}function security(){shell('安全紀錄',`<div class="card filter-panel"><div><label>事件類型</label><select><option>全部事件</option><option>USER_PROVISIONED</option><option>USER_ACTIVATED</option><option>LOGIN_SUCCESS</option></select></div><button class="btn primary block">查詢</button></div><h2>事件</h2><div class="card user-card"><div class="user-name">使用者啟用</div><div class="user-email">USER_ACTIVATED</div><div class="meta"><div class="k">結果</div><div>成功</div><div class="k">時間</div><div>2026-09-09 14:02</div><div class="k">IP</div><div>—</div></div></div>`)}function rankings(){shell('排行榜',`<div class="card"><table class="table"><tr><th>排名</th><th>分店</th><th>營收</th><th>達成率</th></tr><tr><td>1</td><td>台北C店</td><td>409,487</td><td>78.4%</td></tr><tr><td>2</td><td>台北A店</td><td>361,627</td><td>76.8%</td></tr><tr><td>3</td><td>台北B店</td><td>292,681</td><td>66.5%</td></tr></table></div>`)}function generic(t){shell(t,`<div class="card"><div class="small">此模擬頁保留真實產品的導覽位置，目前 v4 先聚焦於可確認的核心畫面與互動。</div></div>`)}function render(p){document.querySelectorAll('.nav a').forEach(a=>a.classList.toggle('active',a.dataset.page===p));if(p==='dashboard')dashboard();else if(p==='sales')sales();else if(p==='organization')organization();else if(p==='security')security();else if(p==='rankings')rankings();else generic(p==='notifications'?'通知':p==='recipients'?'收件人':'模組');window.scrollTo(0,0)}render('dashboard');
-</script></body></html>
+:root{
+  --bg:#18191c;--panel:#23252a;--panel2:#202226;--border:#34373d;--muted:#9da3ad;
+  --text:#f4f5f7;--blue:#2d97ed;--blue2:#1678d2;--danger:#ff5e69;--pill:#eceff2;
+  --pillText:#2d3035;--success:#6bd28d;--warn:#f1c85d;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body{min-height:100vh}
+button,input,select{font:inherit}
+button{cursor:pointer}
+.app{max-width:480px;margin:0 auto;min-height:100vh;background:var(--bg)}
+.topbar{height:58px;background:#1e2024;border-bottom:1px solid #2b2e33;display:flex;align-items:center;position:sticky;top:0;z-index:30}
+.topbar-inner{width:100%;display:grid;grid-template-columns:52px 1fr 72px;align-items:center;padding:0 10px}
+.menu{background:none;border:0;color:white;font-size:25px;text-align:left;padding:8px}
+.brand{display:flex;align-items:center;justify-content:center;gap:8px;font-weight:700}
+.logo-mark{width:34px;height:20px;border-radius:50%;background:radial-gradient(circle at 30% 50%,#18a6ff,transparent 45%),linear-gradient(130deg,#4b35ff,#00b9ff);box-shadow:0 0 10px #0078ff88}
+.brand small{font-size:11px;color:#d8dbe0;font-weight:600}
+.status-pill{justify-self:end;border:1px solid #8e3040;color:#ff7d8c;border-radius:999px;padding:3px 8px;font-size:11px}
+.screen{padding:16px 14px 34px}
+h1{font-size:18px;margin:0 0 14px}
+h2{font-size:15px;margin:22px 0 10px}
+.card{background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:13px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.metric{min-height:78px}
+.metric .k{font-size:11px;color:var(--muted);margin-bottom:8px}
+.metric .v{font-size:22px;font-weight:700;letter-spacing:.2px}
+.metric .sub{font-size:11px;color:var(--muted);margin-top:6px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+label{display:block;font-size:11px;color:var(--muted);margin:0 0 5px}
+input,select{width:100%;background:#1b1d21;border:1px solid #383b42;color:var(--text);border-radius:5px;padding:9px 10px;min-height:40px}
+.quick{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.quick button{border:0;background:var(--pill);color:var(--pillText);border-radius:999px;padding:5px 9px;font-size:11px}
+.btn{border:0;border-radius:5px;min-height:40px;padding:9px 14px;font-weight:700}
+.btn.primary{background:var(--blue);color:#fff}
+.btn.secondary{background:#2b2e34;color:#d9dce1;border:1px solid #41454c}
+.btn.danger{background:#772c34;color:#ffdfe3}
+.btn.block{width:100%}
+.toolbar{display:flex;gap:8px;align-items:center}
+.toolbar>*{flex:1}
+.ai-card{position:relative}
+.ai-card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:6px 0 0 6px;background:#2d97ed}
+.ai-card.warn:before{background:#ff666f}
+.ai-title{font-size:13px;font-weight:700;margin-bottom:7px}
+.ai-body{font-size:12px;line-height:1.6;color:#e5e7ea}
+.ai-body ul{padding-left:18px;margin:6px 0}
+.table{width:100%;border-collapse:collapse;font-size:12px}
+.table th,.table td{border-bottom:1px solid #383b42;padding:8px 5px;text-align:left}
+.table th{font-size:10px;color:var(--muted);font-weight:600}
+.upload{display:grid;gap:8px}
+.filebox{background:#1a1c20;border:1px solid #3a3d44;border-radius:4px;padding:10px;color:#aaa;font-size:12px}
+.user-card{display:grid;gap:9px;margin-bottom:8px}
+.user-head{display:flex;justify-content:space-between;align-items:start;gap:10px}
+.user-name{font-weight:700}
+.user-email{font-size:11px;color:#a9afb7;margin-top:2px}
+.meta{display:grid;grid-template-columns:72px 1fr;gap:4px 8px;font-size:12px}
+.meta .k{color:#9096a0}
+.badge{display:inline-block;padding:2px 7px;border-radius:999px;font-size:10px;border:1px solid #48505a}
+.badge.good{color:#8ee0a9;border-color:#39724d}
+.badge.wait{color:#f5d576;border-color:#78642f}
+.filter-panel{display:grid;gap:8px}
+.filter-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.resultline{display:flex;justify-content:space-between;align-items:center;color:#aab0b8;font-size:11px;margin:10px 0}
+.drawer{position:fixed;inset:0;z-index:60;display:none}
+.drawer.show{display:block}
+.scrim{position:absolute;inset:0;background:#0008}
+.drawer-panel{position:absolute;left:0;top:0;bottom:0;width:min(88vw,380px);background:#202226;border-right:1px solid #363941;padding:18px 14px;overflow:auto}
+.drawer-title{display:flex;align-items:center;gap:10px;margin-bottom:18px;font-weight:700}
+.nav a{display:flex;align-items:center;gap:10px;color:#e8eaed;text-decoration:none;padding:12px 10px;border-radius:6px;font-size:14px}
+.nav a.active,.nav a:hover{background:#2a2d32}
+.nav .sep{height:1px;background:#34373d;margin:10px 0}
+.hidden{display:none!important}
+.segment{display:flex;background:#1d1f23;border:1px solid #373a40;border-radius:5px;overflow:hidden}
+.segment button{flex:1;background:transparent;color:#aaa;border:0;padding:9px}
+.segment button.active{background:#1678d2;color:#fff}
+.tabbar{display:flex;gap:6px;margin-bottom:12px}
+.tabbar button{flex:1;background:#24272c;border:1px solid #393d44;color:#b8bdc5;border-radius:5px;padding:9px 5px;font-size:12px}
+.tabbar button.active{background:#1678d2;color:white;border-color:#1678d2}
+.small{font-size:11px;color:var(--muted)}
+hr{border:0;border-top:1px solid #30333a;margin:18px 0}
+.empty{padding:18px;text-align:center;color:#8f949c;font-size:12px}
+@media(min-width:760px){
+  .app{max-width:1180px}
+  .screen{padding:24px}
+  .grid2{grid-template-columns:repeat(5,1fr)}
+  .layout-wide{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .user-list{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <button class="menu" id="menuBtn">☰</button>
+      <div class="brand"><span class="logo-mark"></span><span>看店勢 <small>DianInsight</small></span></div>
+      <span class="status-pill">模擬器</span>
+    </div>
+  </header>
+  <main id="main"></main>
+</div>
+<div class="drawer" id="drawer">
+  <div class="scrim" id="scrim"></div>
+  <aside class="drawer-panel">
+    <div class="drawer-title"><span class="logo-mark"></span>看店勢 DianInsight</div>
+    <nav class="nav">
+      <a href="#" data-page="dashboard">儀表板</a><a href="#" data-page="sales">銷售</a><a href="#" data-page="rankings">排行榜</a><a href="#" data-page="notifications">通知</a><a href="#" data-page="recipients">收件人</a><div class="sep"></div><a href="#" data-page="organization">組織</a><a href="#" data-page="security">安全紀錄</a><a href="#" data-page="modules">模組</a>
+    </nav>
+  </aside>
+</div>
+<script>
+const main = document.getElementById('main');
+const drawer = document.getElementById('drawer');
+document.getElementById('menuBtn').onclick=()=>drawer.classList.add('show');
+document.getElementById('scrim').onclick=()=>drawer.classList.remove('show');
+document.querySelectorAll('[data-page]').forEach(a=>a.onclick=e=>{e.preventDefault();drawer.classList.remove('show');render(a.dataset.page)});
+const users = [
+ {name:'Bob', id:'M088', email:'bob@gmail.com', access:'門市主管', scope:'門市：A002 — 台北B店', status:'等待啟用', lang:'繁體中文', invite:'邀請已寄出'},
+ {name:'C001', id:'C001', email:'c001@gmail.com', access:'區域主管', scope:'區域：北一區', status:'已啟用', lang:'繁體中文', invite:'邀請已寄出'},
+ {name:'RIO', id:'M006', email:'rio@gmail.com', access:'門市主管', scope:'門市：B001 — 桃園A店', status:'等待啟用', lang:'English', invite:'邀請已寄出'},
+ {name:'Simon', id:'M089', email:'simon@gmail.com', access:'區域主管', scope:'區域：北二區', status:'已啟用', lang:'繁體中文', invite:'邀請已寄出'},
+ {name:'Simon', id:'M090', email:'simonee@gmail.com', access:'門市主管', scope:'門市：B001 — 桃園A店', status:'已啟用', lang:'English', invite:'邀請已寄出'}
+];
+function shell(title,body){main.innerHTML=`<section class="screen"><h1>${title}</h1>${body}</section>`}
+function dashboard(){
+ shell('儀表板',`
+ <div class="form-grid"><div><label>開始日期</label><input value="2026-08-01"></div><div><label>結束日期</label><input value="2026-08-31"></div></div>
+ <div class="quick"><button>今天</button><button>昨天</button><button>最近 7 天</button><button>最近 30 天</button><button>本週</button><button>上週</button><button>本月</button><button>上月</button></div>
+ <h2>營運概況</h2><div class="grid2">${metric('營收','1,063,795')}${metric('目標','1,440,000')}${metric('達成率','73.9%')}${metric('交易數','5408')}${metric('來客數','5875')}</div>
+ <div class="small" style="margin-top:9px">此日期有資料可供查詢。</div><h2>AI 分析結果</h2><button class="btn primary" id="aiBtn">AI 分析</button>
+ <div id="aiOutput" class="hidden">
+  <div class="card ai-card" style="margin-top:10px"><div class="ai-title">摘要</div><div class="ai-body">分析期間為 2025-08-01 至 2025-08-31，整體營收 1,063,795 元，目標達成率 73.87%，較去年同期成長 3.62%。</div></div>
+  <div class="card ai-card" style="margin-top:8px"><div class="ai-title">整體洞察</div><div class="ai-body">整體營收未達目標（目標 1,440,000 元，達成率 73.87%）。北一區為唯一成長區域，但仍應持續追蹤。</div></div>
+  <div class="card" style="margin-top:8px"><div class="ai-title">區域分析</div><div class="ai-body"><ul><li>北一區：營收 1,063,795 元，交易筆數 5,408 筆，來客數 5,875 人。</li></ul></div></div>
+  <div class="card" style="margin-top:8px"><div class="ai-title">店鋪分析</div><table class="table"><tr><th>店鋪</th><th>營收</th><th>交易筆數</th></tr><tr><td>台北A店</td><td>361,627元</td><td>2,138筆</td></tr><tr><td>台北B店</td><td>292,681元</td><td>1,582筆</td></tr><tr><td>台北C店</td><td>409,487元</td><td>1,688筆</td></tr></table></div>
+  <div class="card ai-card warn" style="margin-top:8px"><div class="ai-title">⚠ 異常分析</div><div class="ai-body">台北C店成長率為 -4.43%，呈現異常下降情形。由於目前資料不足，無法進一步判斷營收下滑的確切原因。</div></div>
+  <div class="card" style="margin-top:8px"><div class="ai-title">可能原因</div><div class="ai-body"><ul><li>目前資料不足，尚無法進一步判斷各店造成營業異常的確切原因。</li></ul></div></div>
+  <div class="card" style="margin-top:8px"><div class="ai-title">主管需要注意</div><div class="ai-body"><ul><li>台北B店達成率 66.52%，三家店中最低，且低於整體達成率 73.87%，建議優先關注。</li></ul></div></div>
+ </div>`);
+ document.getElementById('aiBtn').onclick=()=>{const o=document.getElementById('aiOutput');o.classList.remove('hidden');document.getElementById('aiBtn').textContent='重新分析'};
+}
+function sales(){shell('銷售',`<div class="form-grid"><div><label>開始日期</label><input value="2026-08-01"></div><div><label>結束日期</label><input value="2026-08-31"></div></div><div style="margin-top:8px"><label>分店</label><select><option>全部分店</option><option>台北A店</option><option>台北B店</option><option>台北C店</option></select></div><div class="quick"><button>今天</button><button>昨天</button><button>最近 7 天</button><button>最近 30 天</button><button>本週</button><button>上週</button><button>本月</button><button>上月</button></div><h2>業績指標</h2><div class="grid2">${metric('營收','1,063,795')}${metric('目標','1,440,000')}${metric('達成率','73.9%')}${metric('交易數','5408')}${metric('來客數','5875')}</div><h2>AI 分析結果</h2><button class="btn primary" onclick="alert('模擬：已送出 AI 分析')">AI 分析</button><h2>上傳 Excel</h2><div class="card upload"><div class="small">使用範本可以快速匯入業績資料。下載後填寫日期、分店代碼與營收等資訊，再將完成的 .xlsx 檔案上傳。</div><div class="filebox">下載 Excel 範本</div><input type="file"><button class="btn primary">上傳資料</button></div>`);}
+function organization(){shell('組織',`<div class="tabbar"><button>區域列表</button><button>分店列表</button><button class="active">使用者</button></div><div class="card" style="margin-bottom:10px"><button class="btn primary block" id="addUserBtn">＋ 新增使用者</button><div id="addForm" class="hidden" style="margin-top:10px"><div class="form-grid"><div><label>姓名</label><input></div><div><label>員工編號</label><input></div></div><div style="margin-top:8px"><label>Email</label><input type="email"></div><div class="form-grid" style="margin-top:8px"><div><label>權限</label><select><option>門市主管</option><option>區域主管</option><option>管理員</option></select></div><div><label>語言</label><select><option>繁體中文</option><option>English</option></select></div></div><div style="margin-top:8px"><label>管理範圍</label><select><option>台北A店</option><option>台北B店</option><option>北一區</option></select></div><div class="toolbar" style="margin-top:10px"><button class="btn secondary" id="cancelAdd">取消</button><button class="btn primary">建立使用者</button></div></div></div><div class="card filter-panel"><div><label>搜尋</label><input id="q" placeholder="搜尋姓名、使用者名稱或電子郵件"></div><div class="filter-row"><div><label>權限</label><select id="accessF"><option value="">所有權限</option><option>門市主管</option><option>區域主管</option><option>管理員</option></select></div><div><label>狀態</label><select><option>所有狀態</option><option>等待啟用</option><option>已啟用</option></select></div></div><div><label>管理範圍</label><select><option>所有管理範圍</option><option>公司</option><option>區域</option><option>門市</option></select></div><button class="btn primary block" id="searchBtn">搜尋</button><div class="filter-row"><div><label>排序依據</label><select><option>姓名</option><option>員工編號</option><option>Email</option><option>建立日期</option></select></div><div><label>排序方向</label><select><option>升冪</option><option>降冪</option></select></div></div></div><div class="resultline"><span id="count">共 ${users.length} 位使用者</span><button class="btn secondary" style="min-height:32px;padding:5px 8px">清除篩選</button></div><div id="userList" class="user-list"></div><div class="filter-row" style="margin-top:10px"><button class="btn secondary">上一頁</button><button class="btn secondary">下一頁</button></div>`);const add=document.getElementById('addForm'),btn=document.getElementById('addUserBtn');btn.onclick=()=>{add.classList.toggle('hidden');btn.textContent=add.classList.contains('hidden')?'＋ 新增使用者':'收合新增使用者'};document.getElementById('cancelAdd').onclick=()=>{add.classList.add('hidden');btn.textContent='＋ 新增使用者'};renderUsers(users);document.getElementById('searchBtn').onclick=()=>{const q=document.getElementById('q').value.toLowerCase();const a=document.getElementById('accessF').value;const f=users.filter(u=>(!q||(`${u.name} ${u.id} ${u.email}`).toLowerCase().includes(q))&&(!a||u.access===a));renderUsers(f);document.getElementById('count').textContent=`共 ${f.length} 位使用者`;};}
+function renderUsers(list){document.getElementById('userList').innerHTML=list.map(u=>`<div class="card user-card"><div class="user-head"><div><div class="user-name">${u.name}</div><div class="user-email">${u.id} · ${u.email}</div></div><span class="badge ${u.status==='已啟用'?'good':'wait'}">${u.status}</span></div><div class="meta"><div class="k">權限</div><div>${u.access}</div><div class="k">管理範圍</div><div>${u.scope}</div><div class="k">語言</div><div>${u.lang}</div><div class="k">邀請狀態</div><div>${u.invite}</div></div><button class="btn primary block">重新寄送邀請</button></div>`).join('')||`<div class="card empty">找不到符合條件的使用者</div>`;}
+function security(){shell('安全紀錄',`<div class="card filter-panel"><div><label>事件類型</label><select><option>全部事件</option><option>USER_PROVISIONED</option><option>USER_ACTIVATED</option><option>LOGIN_SUCCESS</option></select></div><div class="filter-row"><div><label>嚴重性</label><select><option>全部</option><option>INFO</option><option>WARNING</option></select></div><div><label>結果</label><select><option>全部</option><option>成功</option><option>失敗</option></select></div></div><button class="btn primary block">查詢</button></div><h2>事件</h2>${sec('USER_ACTIVATED','使用者啟用','INFO','成功','2026-09-09 14:02','Jack','—')}${sec('USER_PROVISIONED','建立使用者','INFO','成功','2026-09-09 13:41','Jack','—')}${sec('LOGIN_SUCCESS','登入成功','INFO','成功','2026-09-09 13:20','Bob','100.67.105.115')}`);}
+function rankings(){shell('排行榜',`<div class="card"><table class="table"><tr><th>排名</th><th>分店</th><th>營收</th><th>達成率</th></tr><tr><td>1</td><td>台北C店</td><td>409,487</td><td>78.4%</td></tr><tr><td>2</td><td>台北A店</td><td>361,627</td><td>76.8%</td></tr><tr><td>3</td><td>台北B店</td><td>292,681</td><td>66.5%</td></tr></table></div>`);}
+function generic(title){shell(title,`<div class="card"><div class="small">此模擬頁保留真實產品的導覽位置，目前 v4 先聚焦於影片中可確認的核心畫面與互動。</div></div>`)}
+function metric(k,v){return `<div class="card metric"><div class="k">${k}</div><div class="v">${v}</div></div>`}
+function sec(code,title,sev,out,time,actor,ip){return `<div class="card" style="margin-bottom:8px"><div class="user-head"><div><div class="user-name">${title}</div><div class="user-email">${code}</div></div><span class="badge">${sev}</span></div><div class="meta" style="margin-top:10px"><div class="k">結果</div><div>${out}</div><div class="k">時間</div><div>${time}</div><div class="k">操作者</div><div>${actor}</div><div class="k">IP</div><div>${ip}</div></div></div>`}
+function render(page){document.querySelectorAll('.nav a').forEach(a=>a.classList.toggle('active',a.dataset.page===page));if(page==='dashboard')dashboard();else if(page==='sales')sales();else if(page==='organization')organization();else if(page==='security')security();else if(page==='rankings')rankings();else generic(page==='notifications'?'通知':page==='recipients'?'收件人':'模組');window.scrollTo(0,0);}
+render('dashboard');
+</script>
+</body>
+</html>
