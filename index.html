@@ -127,7 +127,9 @@
     }
 
     button,
-    input {
+    input,
+    select,
+    textarea {
       font: inherit;
     }
 
@@ -1207,6 +1209,179 @@
       line-height:1.7;
     }
 
+    .enterprise {
+      padding:120px 0;
+      scroll-margin-top:80px;
+    }
+
+    .enterprise-card {
+      display:grid;
+      grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);
+      gap:58px;
+      padding:52px;
+      border-radius:36px;
+      align-items:start;
+    }
+
+    .enterprise-copy {
+      position:sticky;
+      top:120px;
+    }
+
+    .enterprise-copy h2 {
+      margin:0;
+      font-size:clamp(38px,5vw,58px);
+      line-height:1.08;
+      letter-spacing:-.045em;
+    }
+
+    .enterprise-copy p {
+      margin:20px 0 0;
+      color:var(--text-soft);
+      font-size:16px;
+      line-height:1.85;
+    }
+
+    .enterprise-points {
+      display:grid;
+      gap:12px;
+      margin-top:28px;
+      color:#aebed0;
+      font-size:14px;
+    }
+
+    .enterprise-point {
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+    }
+
+    .enterprise-point::before {
+      content:"";
+      width:7px;
+      height:7px;
+      flex:0 0 auto;
+      margin-top:8px;
+      border-radius:50%;
+      background:var(--cyan);
+      box-shadow:0 0 12px rgba(102,227,255,.6);
+    }
+
+    .enterprise-form {
+      display:grid;
+      gap:19px;
+      padding:28px;
+      border-radius:25px;
+      background:rgba(3,10,18,.34);
+      border:1px solid rgba(255,255,255,.07);
+    }
+
+    .enterprise-form-grid {
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:18px;
+    }
+
+    .form-field {
+      display:grid;
+      gap:7px;
+    }
+
+    .form-field.full {
+      grid-column:1 / -1;
+    }
+
+    .form-field label {
+      color:#d4dfeb;
+      font-size:13px;
+      font-weight:700;
+    }
+
+    .optional {
+      color:var(--muted);
+      font-weight:500;
+    }
+
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      width:100%;
+      border:1px solid rgba(255,255,255,.11);
+      border-radius:13px;
+      outline:none;
+      color:var(--text);
+      background:rgba(255,255,255,.045);
+      font-size:16px;
+      transition:border-color .18s ease,box-shadow .18s ease,background .18s ease;
+    }
+
+    .form-field input,
+    .form-field select {
+      min-height:50px;
+      padding:0 14px;
+    }
+
+    .form-field textarea {
+      min-height:112px;
+      padding:13px 14px;
+      resize:vertical;
+      line-height:1.6;
+    }
+
+    .form-field input::placeholder,
+    .form-field textarea::placeholder {
+      color:#64778d;
+    }
+
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus {
+      border-color:rgba(114,170,255,.72);
+      background:rgba(255,255,255,.065);
+      box-shadow:0 0 0 3px rgba(114,170,255,.12);
+    }
+
+    .enterprise-submit {
+      width:100%;
+      min-height:52px;
+      border:0;
+      border-radius:14px;
+      color:#051020;
+      background:linear-gradient(135deg,#8dbaff,#6be1ff);
+      font-size:15px;
+      font-weight:800;
+      cursor:pointer;
+      transition:opacity .18s ease,transform .18s ease;
+    }
+
+    .enterprise-submit:not(:disabled):hover {
+      transform:translateY(-1px);
+    }
+
+    .enterprise-submit:disabled {
+      cursor:wait;
+      opacity:.64;
+    }
+
+    .form-message {
+      min-height:24px;
+      margin:0;
+      color:var(--green);
+      font-size:13px;
+      line-height:1.65;
+    }
+
+    .form-message.is-error {
+      color:#ff9b9b;
+    }
+
+    .form-privacy {
+      margin:0;
+      color:var(--muted);
+      font-size:11px;
+      line-height:1.65;
+    }
+
     .coming {
       padding:130px 0;
     }
@@ -1296,6 +1471,10 @@
       align-items:center;
     }
 
+    .turnstile-wrap .cf-turnstile {
+      width:100%;
+    }
+
     .signup-message {
       min-height:20px;
       margin-top:12px;
@@ -1343,6 +1522,8 @@
       .span-7,.span-5,.span-4,.span-8 { grid-column:span 12; }
       .report-layout,.security-grid { grid-template-columns:1fr; }
       .flow { grid-template-columns:1fr 1fr; }
+      .enterprise-card { grid-template-columns:1fr; }
+      .enterprise-copy { position:static; }
     }
 
     @media (max-width:640px) {
@@ -1376,6 +1557,11 @@
       .report-top,.report-section { padding-left:19px; padding-right:19px; }
       .security-wrap { padding:24px; border-radius:25px; }
       .flow { grid-template-columns:1fr; }
+      .enterprise { padding:85px 0; }
+      .enterprise-card { gap:34px; padding:31px 18px; border-radius:28px; }
+      .enterprise-form { padding:19px 14px; }
+      .enterprise-form-grid { grid-template-columns:1fr; gap:17px; }
+      .form-field.full { grid-column:auto; }
       .coming { padding:85px 0; }
       .coming-card { padding:54px 20px; border-radius:28px; }
 
@@ -1386,6 +1572,7 @@
 
       .signup input {
         min-height:44px;
+        font-size:16px;
       }
 
       .signup button {
@@ -1458,8 +1645,8 @@
               <span aria-hidden="true">→</span>
             </a>
 
-            <a class="button secondary" href="#coming">
-              接收產品消息
+            <a class="button secondary" href="#enterprise-inquiry">
+              企業導入諮詢
             </a>
           </div>
 
@@ -1934,12 +2121,106 @@
       </div>
     </section>
 
-    <section class="coming" id="coming">
+    <section class="enterprise" id="enterprise-inquiry" aria-labelledby="enterprise-title">
+      <div class="container">
+        <div class="enterprise-card glass reveal">
+          <div class="enterprise-copy">
+            <div class="kicker">Enterprise Inquiry</div>
+            <h2 id="enterprise-title">讓我們一起釐清，<br>看店勢如何適合你的團隊。</h2>
+            <p>
+              如果你正在管理多個據點、區域或營運團隊，留下目前的作業方式與最想解決的問題，我們會依你的情境與你聯繫。
+            </p>
+
+            <div class="enterprise-points" aria-label="企業導入諮詢重點">
+              <div class="enterprise-point">了解現有報表與業績整理流程</div>
+              <div class="enterprise-point">討論多據點管理與 AI 分析需求</div>
+              <div class="enterprise-point">評估適合的導入方式與下一步</div>
+            </div>
+          </div>
+
+          <form class="enterprise-form" id="enterpriseForm">
+            <div class="enterprise-form-grid">
+              <div class="form-field">
+                <label for="companyName">公司名稱</label>
+                <input id="companyName" name="companyName" type="text" autocomplete="organization" maxlength="120" required>
+              </div>
+
+              <div class="form-field">
+                <label for="contactName">聯絡人姓名</label>
+                <input id="contactName" name="contactName" type="text" autocomplete="name" maxlength="80" required>
+              </div>
+
+              <div class="form-field">
+                <label for="workEmail">工作 Email</label>
+                <input id="workEmail" name="workEmail" type="email" autocomplete="email" inputmode="email" maxlength="254" required>
+              </div>
+
+              <div class="form-field">
+                <label for="phone">電話 <span class="optional">（選填）</span></label>
+                <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="40">
+              </div>
+
+              <div class="form-field">
+                <label for="industry">產業</label>
+                <select id="industry" name="industry" required>
+                  <option value="" selected disabled>請選擇產業</option>
+                  <option value="連鎖零售">連鎖零售</option>
+                  <option value="餐飲服務">餐飲服務</option>
+                  <option value="生活服務">生活服務</option>
+                  <option value="醫療與健康">醫療與健康</option>
+                  <option value="教育">教育</option>
+                  <option value="其他">其他</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label for="locationCount">據點數量</label>
+                <input id="locationCount" name="locationCount" type="number" inputmode="numeric" min="1" max="100000" step="1" required>
+              </div>
+
+              <div class="form-field full">
+                <label for="salesProcess">目前怎麼整理業績</label>
+                <textarea id="salesProcess" name="salesProcess" maxlength="2000" placeholder="例如：各門市每日回傳 Excel，再由總部人工彙整。" required></textarea>
+              </div>
+
+              <div class="form-field full">
+                <label for="primaryProblem">最想解決的問題</label>
+                <textarea id="primaryProblem" name="primaryProblem" maxlength="2000" placeholder="例如：希望更快發現異常門市，減少主管整理報表的時間。" required></textarea>
+              </div>
+
+              <div class="form-field full">
+                <label for="otherRequirements">其他需求 <span class="optional">（選填）</span></label>
+                <textarea id="otherRequirements" name="otherRequirements" maxlength="4000"></textarea>
+              </div>
+            </div>
+
+            <div class="turnstile-wrap">
+              <div
+                class="cf-turnstile"
+                id="enterpriseTurnstile"
+                data-sitekey="0x4AAAAAAEo7_ehxh774UgJj"
+                data-size="compact"
+                data-theme="dark"
+              ></div>
+            </div>
+
+            <button class="enterprise-submit" id="enterpriseButton" type="submit">
+              送出企業導入諮詢
+            </button>
+
+            <p class="form-message" id="enterpriseMessage" role="status" aria-live="polite"></p>
+            <p class="form-privacy">送出後，我們只會使用你提供的資料回覆這次企業導入諮詢。</p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="coming" id="coming" aria-labelledby="coming-title">
       <div class="container">
         <div class="coming-card glass reveal">
           <div class="kicker">Coming Soon</div>
 
-          <h2>
+          <h2 id="coming-title">
             不只是看數據。<br>
             開始真正看懂店勢。
           </h2>
@@ -1969,6 +2250,7 @@
             <div class="turnstile-wrap">
               <div
                 class="cf-turnstile"
+                id="waitlistTurnstile"
                 data-sitekey="0x4AAAAAAEo7_ehxh774UgJj"
                 data-theme="dark"
               ></div>
@@ -2022,8 +2304,11 @@
       .querySelectorAll('.reveal')
       .forEach(el => revealObserver.observe(el));
 
-    const WAITLIST_ENDPOINT =
-      'https://dianinsight-preview-waitlist.nkhs9412235.workers.dev/waitlist';
+    const WORKER_BASE_URL =
+      'https://dianinsight-preview-waitlist.nkhs9412235.workers.dev';
+
+    const WAITLIST_ENDPOINT = `${WORKER_BASE_URL}/waitlist`;
+    const ENTERPRISE_ENDPOINT = `${WORKER_BASE_URL}/enterprise-inquiry`;
 
     const signupForm = document.getElementById('signupForm');
     const signupMessage = document.getElementById('signupMessage');
@@ -2035,28 +2320,125 @@
       signupMessage.classList.toggle('is-error', isError);
     }
 
-    function resetTurnstile() {
+    function resetTurnstile(widgetSelector) {
       if (window.turnstile && typeof window.turnstile.reset === 'function') {
         try {
-          window.turnstile.reset();
+          window.turnstile.reset(widgetSelector);
         } catch (_) {}
       }
     }
 
-    function getTurnstileToken() {
-      if (
-        window.turnstile &&
-        typeof window.turnstile.getResponse === 'function'
-      ) {
-        try {
-          return window.turnstile.getResponse() || '';
-        } catch (_) {}
-      }
-
+    function getTurnstileToken(form) {
       return (
-        document.querySelector('[name="cf-turnstile-response"]')?.value || ''
+        form.querySelector('[name="cf-turnstile-response"]')?.value || ''
       );
     }
+
+    const enterpriseForm = document.getElementById('enterpriseForm');
+    const enterpriseMessage = document.getElementById('enterpriseMessage');
+    const enterpriseButton = document.getElementById('enterpriseButton');
+
+    function setEnterpriseMessage(message, isError = false) {
+      enterpriseMessage.textContent = message;
+      enterpriseMessage.classList.toggle('is-error', isError);
+    }
+
+    enterpriseForm.addEventListener('submit', async event => {
+      event.preventDefault();
+
+      if (!enterpriseForm.checkValidity()) {
+        enterpriseForm.reportValidity();
+        return;
+      }
+
+      const formData = new FormData(enterpriseForm);
+      const turnstileToken = getTurnstileToken(enterpriseForm);
+
+      if (!turnstileToken) {
+        setEnterpriseMessage('請先完成安全驗證。', true);
+        return;
+      }
+
+      enterpriseButton.disabled = true;
+      enterpriseButton.textContent = '送出中…';
+      enterpriseForm.setAttribute('aria-busy', 'true');
+      setEnterpriseMessage('');
+
+      try {
+        const response = await fetch(ENTERPRISE_ENDPOINT, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            companyName: String(formData.get('companyName') || '').trim(),
+            contactName: String(formData.get('contactName') || '').trim(),
+            workEmail: String(formData.get('workEmail') || '').trim(),
+            phone: String(formData.get('phone') || '').trim(),
+            industry: String(formData.get('industry') || '').trim(),
+            locationCount: Number(formData.get('locationCount')),
+            salesProcess: String(formData.get('salesProcess') || '').trim(),
+            primaryProblem: String(formData.get('primaryProblem') || '').trim(),
+            otherRequirements: String(formData.get('otherRequirements') || '').trim(),
+            turnstileToken
+          })
+        });
+
+        let result = null;
+
+        try {
+          result = await response.json();
+        } catch (_) {}
+
+        if (!response.ok || result?.ok !== true) {
+          if (
+            response.status === 403 ||
+            result?.error === 'HUMAN_VERIFICATION_FAILED'
+          ) {
+            setEnterpriseMessage(
+              '安全驗證已失效，請重新驗證後再試一次。',
+              true
+            );
+          } else if (response.status === 400 || response.status === 422) {
+            setEnterpriseMessage(
+              '請確認必填欄位與內容是否正確。',
+              true
+            );
+          } else if (response.status === 429) {
+            setEnterpriseMessage(
+              '送出次數過於頻繁，請稍後再試。',
+              true
+            );
+          } else {
+            setEnterpriseMessage(
+              '目前無法送出，請稍後再試。',
+              true
+            );
+          }
+
+          resetTurnstile('#enterpriseTurnstile');
+          return;
+        }
+
+        enterpriseForm.reset();
+        setEnterpriseMessage(
+          '已收到你的企業導入需求，我們會盡快與你聯繫。'
+        );
+        resetTurnstile('#enterpriseTurnstile');
+
+      } catch (_) {
+        setEnterpriseMessage(
+          '目前無法連線，請稍後再試。',
+          true
+        );
+        resetTurnstile('#enterpriseTurnstile');
+
+      } finally {
+        enterpriseButton.disabled = false;
+        enterpriseButton.textContent = '送出企業導入諮詢';
+        enterpriseForm.removeAttribute('aria-busy');
+      }
+    });
 
     signupForm.addEventListener('submit', async event => {
       event.preventDefault();
@@ -2067,7 +2449,7 @@
       }
 
       const email = emailInput.value.trim();
-      const turnstileToken = getTurnstileToken();
+      const turnstileToken = getTurnstileToken(signupForm);
 
       if (!turnstileToken) {
         setSignupMessage('請先完成安全驗證。', true);
@@ -2127,7 +2509,7 @@
             );
           }
 
-          resetTurnstile();
+          resetTurnstile('#waitlistTurnstile');
           return;
         }
 
@@ -2137,7 +2519,7 @@
           '收到！我們會在 DianInsight 有新消息時通知你。'
         );
 
-        resetTurnstile();
+        resetTurnstile('#waitlistTurnstile');
 
       } catch (_) {
         setSignupMessage(
@@ -2145,7 +2527,7 @@
           true
         );
 
-        resetTurnstile();
+        resetTurnstile('#waitlistTurnstile');
 
       } finally {
         signupButton.disabled = false;
