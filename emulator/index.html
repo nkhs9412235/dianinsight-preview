@@ -22,7 +22,7 @@ button{cursor:pointer}
 .brand{display:flex;align-items:center;justify-content:center;gap:8px;font-weight:700}
 .logo-mark{width:34px;height:20px;border-radius:50%;background:radial-gradient(circle at 30% 50%,#18a6ff,transparent 45%),linear-gradient(130deg,#4b35ff,#00b9ff);box-shadow:0 0 10px #0078ff88}
 .brand small{font-size:11px;color:#d8dbe0;font-weight:600}
-.status-pill{justify-self:end;border:1px solid #8e3040;color:#ff7d8c;border-radius:999px;padding:3px 8px;font-size:11px}
+.status-pill{justify-self:end;border:1px solid #8e3040;color:#ff7d8c;border-radius:999px;padding:3px 8px;font-size:11px}.back-home{color:#d9dce1;text-decoration:none;font-size:12px;white-space:nowrap}.back-home:hover{text-decoration:underline}
 .screen{padding:16px 14px 34px}
 h1{font-size:18px;margin:0 0 14px}
 h2{font-size:15px;margin:22px 0 10px}
@@ -100,26 +100,38 @@ hr{border:0;border-top:1px solid #30333a;margin:18px 0}
     <div class="topbar-inner">
       <button class="menu" id="menuBtn">☰</button>
       <div class="brand"><span class="logo-mark"></span><span>看店勢 <small>DianInsight</small></span></div>
-      <span class="status-pill">模擬器</span>
+      <a class="back-home" href="/">← 回到介紹頁</a>
     </div>
   </header>
+
   <main id="main"></main>
 </div>
+
 <div class="drawer" id="drawer">
   <div class="scrim" id="scrim"></div>
   <aside class="drawer-panel">
     <div class="drawer-title"><span class="logo-mark"></span>看店勢 DianInsight</div>
     <nav class="nav">
-      <a href="#" data-page="dashboard">儀表板</a><a href="#" data-page="sales">銷售</a><a href="#" data-page="rankings">排行榜</a><a href="#" data-page="notifications">通知</a><a href="#" data-page="recipients">收件人</a><div class="sep"></div><a href="#" data-page="organization">組織</a><a href="#" data-page="security">安全紀錄</a><a href="#" data-page="modules">模組</a>
+      <a href="#" data-page="dashboard">儀表板</a>
+      <a href="#" data-page="sales">銷售</a>
+      <a href="#" data-page="rankings">排行榜</a>
+      <a href="#" data-page="notifications">通知</a>
+      <a href="#" data-page="recipients">收件人</a>
+      <div class="sep"></div>
+      <a href="#" data-page="organization">組織</a>
+      <a href="#" data-page="security">安全紀錄</a>
+      <a href="#" data-page="modules">模組</a>
     </nav>
   </aside>
 </div>
+
 <script>
 const main = document.getElementById('main');
 const drawer = document.getElementById('drawer');
 document.getElementById('menuBtn').onclick=()=>drawer.classList.add('show');
 document.getElementById('scrim').onclick=()=>drawer.classList.remove('show');
 document.querySelectorAll('[data-page]').forEach(a=>a.onclick=e=>{e.preventDefault();drawer.classList.remove('show');render(a.dataset.page)});
+
 const users = [
  {name:'Bob', id:'M088', email:'bob@gmail.com', access:'門市主管', scope:'門市：A002 — 台北B店', status:'等待啟用', lang:'繁體中文', invite:'邀請已寄出'},
  {name:'C001', id:'C001', email:'c001@gmail.com', access:'區域主管', scope:'區域：北一區', status:'已啟用', lang:'繁體中文', invite:'邀請已寄出'},
@@ -127,13 +139,27 @@ const users = [
  {name:'Simon', id:'M089', email:'simon@gmail.com', access:'區域主管', scope:'區域：北二區', status:'已啟用', lang:'繁體中文', invite:'邀請已寄出'},
  {name:'Simon', id:'M090', email:'simonee@gmail.com', access:'門市主管', scope:'門市：B001 — 桃園A店', status:'已啟用', lang:'English', invite:'邀請已寄出'}
 ];
+
 function shell(title,body){main.innerHTML=`<section class="screen"><h1>${title}</h1>${body}</section>`}
+
 function dashboard(){
  shell('儀表板',`
- <div class="form-grid"><div><label>開始日期</label><input value="2026-08-01"></div><div><label>結束日期</label><input value="2026-08-31"></div></div>
+ <div class="form-grid">
+  <div><label>開始日期</label><input value="2026-08-01"></div>
+  <div><label>結束日期</label><input value="2026-08-31"></div>
+ </div>
  <div class="quick"><button>今天</button><button>昨天</button><button>最近 7 天</button><button>最近 30 天</button><button>本週</button><button>上週</button><button>本月</button><button>上月</button></div>
- <h2>營運概況</h2><div class="grid2">${metric('營收','1,063,795')}${metric('目標','1,440,000')}${metric('達成率','73.9%')}${metric('交易數','5408')}${metric('來客數','5875')}</div>
- <div class="small" style="margin-top:9px">此日期有資料可供查詢。</div><h2>AI 分析結果</h2><button class="btn primary" id="aiBtn">AI 分析</button>
+ <h2>營運概況</h2>
+ <div class="grid2">
+   ${metric('營收','1,063,795')}
+   ${metric('目標','1,440,000')}
+   ${metric('達成率','73.9%')}
+   ${metric('交易數','5408')}
+   ${metric('來客數','5875')}
+ </div>
+ <div class="small" style="margin-top:9px">此日期有資料可供查詢。</div>
+ <h2>AI 分析結果</h2>
+ <button class="btn primary" id="aiBtn">AI 分析</button>
  <div id="aiOutput" class="hidden">
   <div class="card ai-card" style="margin-top:10px"><div class="ai-title">摘要</div><div class="ai-body">分析期間為 2025-08-01 至 2025-08-31，整體營收 1,063,795 元，目標達成率 73.87%，較去年同期成長 3.62%。</div></div>
   <div class="card ai-card" style="margin-top:8px"><div class="ai-title">整體洞察</div><div class="ai-body">整體營收未達目標（目標 1,440,000 元，達成率 73.87%）。北一區為唯一成長區域，但仍應持續追蹤。</div></div>
@@ -145,15 +171,81 @@ function dashboard(){
  </div>`);
  document.getElementById('aiBtn').onclick=()=>{const o=document.getElementById('aiOutput');o.classList.remove('hidden');document.getElementById('aiBtn').textContent='重新分析'};
 }
-function sales(){shell('銷售',`<div class="form-grid"><div><label>開始日期</label><input value="2026-08-01"></div><div><label>結束日期</label><input value="2026-08-31"></div></div><div style="margin-top:8px"><label>分店</label><select><option>全部分店</option><option>台北A店</option><option>台北B店</option><option>台北C店</option></select></div><div class="quick"><button>今天</button><button>昨天</button><button>最近 7 天</button><button>最近 30 天</button><button>本週</button><button>上週</button><button>本月</button><button>上月</button></div><h2>業績指標</h2><div class="grid2">${metric('營收','1,063,795')}${metric('目標','1,440,000')}${metric('達成率','73.9%')}${metric('交易數','5408')}${metric('來客數','5875')}</div><h2>AI 分析結果</h2><button class="btn primary" onclick="alert('模擬：已送出 AI 分析')">AI 分析</button><h2>上傳 Excel</h2><div class="card upload"><div class="small">使用範本可以快速匯入業績資料。下載後填寫日期、分店代碼與營收等資訊，再將完成的 .xlsx 檔案上傳。</div><div class="filebox">下載 Excel 範本</div><input type="file"><button class="btn primary">上傳資料</button></div>`);}
-function organization(){shell('組織',`<div class="tabbar"><button>區域列表</button><button>分店列表</button><button class="active">使用者</button></div><div class="card" style="margin-bottom:10px"><button class="btn primary block" id="addUserBtn">＋ 新增使用者</button><div id="addForm" class="hidden" style="margin-top:10px"><div class="form-grid"><div><label>姓名</label><input></div><div><label>員工編號</label><input></div></div><div style="margin-top:8px"><label>Email</label><input type="email"></div><div class="form-grid" style="margin-top:8px"><div><label>權限</label><select><option>門市主管</option><option>區域主管</option><option>管理員</option></select></div><div><label>語言</label><select><option>繁體中文</option><option>English</option></select></div></div><div style="margin-top:8px"><label>管理範圍</label><select><option>台北A店</option><option>台北B店</option><option>北一區</option></select></div><div class="toolbar" style="margin-top:10px"><button class="btn secondary" id="cancelAdd">取消</button><button class="btn primary">建立使用者</button></div></div></div><div class="card filter-panel"><div><label>搜尋</label><input id="q" placeholder="搜尋姓名、使用者名稱或電子郵件"></div><div class="filter-row"><div><label>權限</label><select id="accessF"><option value="">所有權限</option><option>門市主管</option><option>區域主管</option><option>管理員</option></select></div><div><label>狀態</label><select><option>所有狀態</option><option>等待啟用</option><option>已啟用</option></select></div></div><div><label>管理範圍</label><select><option>所有管理範圍</option><option>公司</option><option>區域</option><option>門市</option></select></div><button class="btn primary block" id="searchBtn">搜尋</button><div class="filter-row"><div><label>排序依據</label><select><option>姓名</option><option>員工編號</option><option>Email</option><option>建立日期</option></select></div><div><label>排序方向</label><select><option>升冪</option><option>降冪</option></select></div></div></div><div class="resultline"><span id="count">共 ${users.length} 位使用者</span><button class="btn secondary" style="min-height:32px;padding:5px 8px">清除篩選</button></div><div id="userList" class="user-list"></div><div class="filter-row" style="margin-top:10px"><button class="btn secondary">上一頁</button><button class="btn secondary">下一頁</button></div>`);const add=document.getElementById('addForm'),btn=document.getElementById('addUserBtn');btn.onclick=()=>{add.classList.toggle('hidden');btn.textContent=add.classList.contains('hidden')?'＋ 新增使用者':'收合新增使用者'};document.getElementById('cancelAdd').onclick=()=>{add.classList.add('hidden');btn.textContent='＋ 新增使用者'};renderUsers(users);document.getElementById('searchBtn').onclick=()=>{const q=document.getElementById('q').value.toLowerCase();const a=document.getElementById('accessF').value;const f=users.filter(u=>(!q||(`${u.name} ${u.id} ${u.email}`).toLowerCase().includes(q))&&(!a||u.access===a));renderUsers(f);document.getElementById('count').textContent=`共 ${f.length} 位使用者`;};}
-function renderUsers(list){document.getElementById('userList').innerHTML=list.map(u=>`<div class="card user-card"><div class="user-head"><div><div class="user-name">${u.name}</div><div class="user-email">${u.id} · ${u.email}</div></div><span class="badge ${u.status==='已啟用'?'good':'wait'}">${u.status}</span></div><div class="meta"><div class="k">權限</div><div>${u.access}</div><div class="k">管理範圍</div><div>${u.scope}</div><div class="k">語言</div><div>${u.lang}</div><div class="k">邀請狀態</div><div>${u.invite}</div></div><button class="btn primary block">重新寄送邀請</button></div>`).join('')||`<div class="card empty">找不到符合條件的使用者</div>`;}
-function security(){shell('安全紀錄',`<div class="card filter-panel"><div><label>事件類型</label><select><option>全部事件</option><option>USER_PROVISIONED</option><option>USER_ACTIVATED</option><option>LOGIN_SUCCESS</option></select></div><div class="filter-row"><div><label>嚴重性</label><select><option>全部</option><option>INFO</option><option>WARNING</option></select></div><div><label>結果</label><select><option>全部</option><option>成功</option><option>失敗</option></select></div></div><button class="btn primary block">查詢</button></div><h2>事件</h2>${sec('USER_ACTIVATED','使用者啟用','INFO','成功','2026-09-09 14:02','Jack','—')}${sec('USER_PROVISIONED','建立使用者','INFO','成功','2026-09-09 13:41','Jack','—')}${sec('LOGIN_SUCCESS','登入成功','INFO','成功','2026-09-09 13:20','Bob','100.67.105.115')}`);}
-function rankings(){shell('排行榜',`<div class="card"><table class="table"><tr><th>排名</th><th>分店</th><th>營收</th><th>達成率</th></tr><tr><td>1</td><td>台北C店</td><td>409,487</td><td>78.4%</td></tr><tr><td>2</td><td>台北A店</td><td>361,627</td><td>76.8%</td></tr><tr><td>3</td><td>台北B店</td><td>292,681</td><td>66.5%</td></tr></table></div>`);}
+function sales(){
+ shell('銷售',`
+ <div class="form-grid"><div><label>開始日期</label><input value="2026-08-01"></div><div><label>結束日期</label><input value="2026-08-31"></div></div>
+ <div style="margin-top:8px"><label>分店</label><select><option>全部分店</option><option>台北A店</option><option>台北B店</option><option>台北C店</option></select></div>
+ <div class="quick"><button>今天</button><button>昨天</button><button>最近 7 天</button><button>最近 30 天</button><button>本週</button><button>上週</button><button>本月</button><button>上月</button></div>
+ <h2>業績指標</h2><div class="grid2">${metric('營收','1,063,795')}${metric('目標','1,440,000')}${metric('達成率','73.9%')}${metric('交易數','5408')}${metric('來客數','5875')}</div>
+ <h2>AI 分析結果</h2><button class="btn primary" onclick="alert('模擬：已送出 AI 分析')">AI 分析</button>
+ <h2>上傳 Excel</h2><div class="card upload"><div class="small">使用範本可以快速匯入業績資料。下載後填寫日期、分店代碼與營收等資訊，再將完成的 .xlsx 檔案上傳。</div><div class="filebox">下載 Excel 範本</div><input type="file"><button class="btn primary">上傳資料</button></div>`);
+}
+function organization(){
+ shell('組織',`
+ <div class="tabbar"><button>區域列表</button><button>分店列表</button><button class="active">使用者</button></div>
+ <div class="card" style="margin-bottom:10px">
+   <button class="btn primary block" id="addUserBtn">＋ 新增使用者</button>
+   <div id="addForm" class="hidden" style="margin-top:10px">
+    <div class="form-grid"><div><label>姓名</label><input></div><div><label>員工編號</label><input></div></div>
+    <div style="margin-top:8px"><label>Email</label><input type="email"></div>
+    <div class="form-grid" style="margin-top:8px"><div><label>權限</label><select><option>門市主管</option><option>區域主管</option><option>管理員</option></select></div><div><label>語言</label><select><option>繁體中文</option><option>English</option></select></div></div>
+    <div style="margin-top:8px"><label>管理範圍</label><select><option>台北A店</option><option>台北B店</option><option>北一區</option></select></div>
+    <div class="toolbar" style="margin-top:10px"><button class="btn secondary" id="cancelAdd">取消</button><button class="btn primary">建立使用者</button></div>
+   </div>
+ </div>
+ <div class="card filter-panel">
+   <div><label>搜尋</label><input id="q" placeholder="搜尋姓名、使用者名稱或電子郵件"></div>
+   <div class="filter-row"><div><label>權限</label><select id="accessF"><option value="">所有權限</option><option>門市主管</option><option>區域主管</option><option>管理員</option></select></div><div><label>狀態</label><select><option>所有狀態</option><option>等待啟用</option><option>已啟用</option></select></div></div>
+   <div><label>管理範圍</label><select><option>所有管理範圍</option><option>公司</option><option>區域</option><option>門市</option></select></div>
+   <button class="btn primary block" id="searchBtn">搜尋</button>
+   <div class="filter-row"><div><label>排序依據</label><select><option>姓名</option><option>員工編號</option><option>Email</option><option>建立日期</option></select></div><div><label>排序方向</label><select><option>升冪</option><option>降冪</option></select></div></div>
+ </div>
+ <div class="resultline"><span id="count">共 ${users.length} 位使用者</span><button class="btn secondary" style="min-height:32px;padding:5px 8px">清除篩選</button></div>
+ <div id="userList" class="user-list"></div>
+ <div class="filter-row" style="margin-top:10px"><button class="btn secondary">上一頁</button><button class="btn secondary">下一頁</button></div>
+ `);
+ const add=document.getElementById('addForm'), btn=document.getElementById('addUserBtn');
+ btn.onclick=()=>{add.classList.toggle('hidden');btn.textContent=add.classList.contains('hidden')?'＋ 新增使用者':'收合新增使用者'};
+ document.getElementById('cancelAdd').onclick=()=>{add.classList.add('hidden');btn.textContent='＋ 新增使用者'};
+ renderUsers(users);
+ document.getElementById('searchBtn').onclick=()=>{const q=document.getElementById('q').value.toLowerCase();const a=document.getElementById('accessF').value;const f=users.filter(u=>(!q||(`${u.name} ${u.id} ${u.email}`).toLowerCase().includes(q))&&(!a||u.access===a));renderUsers(f);document.getElementById('count').textContent=`共 ${f.length} 位使用者`;};
+}
+function renderUsers(list){
+ document.getElementById('userList').innerHTML=list.map(u=>`<div class="card user-card">
+ <div class="user-head"><div><div class="user-name">${u.name}</div><div class="user-email">${u.id} · ${u.email}</div></div><span class="badge ${u.status==='已啟用'?'good':'wait'}">${u.status}</span></div>
+ <div class="meta"><div class="k">權限</div><div>${u.access}</div><div class="k">管理範圍</div><div>${u.scope}</div><div class="k">語言</div><div>${u.lang}</div><div class="k">邀請狀態</div><div>${u.invite}</div></div>
+ <button class="btn primary block">重新寄送邀請</button>
+ </div>`).join('') || `<div class="card empty">找不到符合條件的使用者</div>`;
+}
+function security(){
+ shell('安全紀錄',`
+ <div class="card filter-panel">
+  <div><label>事件類型</label><select><option>全部事件</option><option>USER_PROVISIONED</option><option>USER_ACTIVATED</option><option>LOGIN_SUCCESS</option></select></div>
+  <div class="filter-row"><div><label>嚴重性</label><select><option>全部</option><option>INFO</option><option>WARNING</option></select></div><div><label>結果</label><select><option>全部</option><option>成功</option><option>失敗</option></select></div></div>
+  <button class="btn primary block">查詢</button>
+ </div>
+ <h2>事件</h2>
+ ${sec('USER_ACTIVATED','使用者啟用','INFO','成功','2026-09-09 14:02','Jack','—')}
+ ${sec('USER_PROVISIONED','建立使用者','INFO','成功','2026-09-09 13:41','Jack','—')}
+ ${sec('LOGIN_SUCCESS','登入成功','INFO','成功','2026-09-09 13:20','Bob','100.67.105.115')}
+ `);
+}
+function rankings(){
+ shell('排行榜',`<div class="card"><table class="table"><tr><th>排名</th><th>分店</th><th>營收</th><th>達成率</th></tr><tr><td>1</td><td>台北C店</td><td>409,487</td><td>78.4%</td></tr><tr><td>2</td><td>台北A店</td><td>361,627</td><td>76.8%</td></tr><tr><td>3</td><td>台北B店</td><td>292,681</td><td>66.5%</td></tr></table></div>`);
+}
 function generic(title){shell(title,`<div class="card"><div class="small">此模擬頁保留真實產品的導覽位置，目前 v4 先聚焦於影片中可確認的核心畫面與互動。</div></div>`)}
 function metric(k,v){return `<div class="card metric"><div class="k">${k}</div><div class="v">${v}</div></div>`}
 function sec(code,title,sev,out,time,actor,ip){return `<div class="card" style="margin-bottom:8px"><div class="user-head"><div><div class="user-name">${title}</div><div class="user-email">${code}</div></div><span class="badge">${sev}</span></div><div class="meta" style="margin-top:10px"><div class="k">結果</div><div>${out}</div><div class="k">時間</div><div>${time}</div><div class="k">操作者</div><div>${actor}</div><div class="k">IP</div><div>${ip}</div></div></div>`}
-function render(page){document.querySelectorAll('.nav a').forEach(a=>a.classList.toggle('active',a.dataset.page===page));if(page==='dashboard')dashboard();else if(page==='sales')sales();else if(page==='organization')organization();else if(page==='security')security();else if(page==='rankings')rankings();else generic(page==='notifications'?'通知':page==='recipients'?'收件人':'模組');window.scrollTo(0,0);}
+function render(page){
+ document.querySelectorAll('.nav a').forEach(a=>a.classList.toggle('active',a.dataset.page===page));
+ if(page==='dashboard') dashboard();
+ else if(page==='sales') sales();
+ else if(page==='organization') organization();
+ else if(page==='security') security();
+ else if(page==='rankings') rankings();
+ else generic(page==='notifications'?'通知':page==='recipients'?'收件人':'模組');
+ window.scrollTo(0,0);
+}
 render('dashboard');
 </script>
 </body>
