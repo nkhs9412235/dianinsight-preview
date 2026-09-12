@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>看店勢 DianInsight — High Fidelity Emulator v6</title>
+<title>看店勢 DianInsight — High Fidelity Emulator v6.1</title>
 <style>
 :root{--bg:#f4f6f8;--surface:#fff;--surface-2:#f8fafc;--border:#d8dee7;--text:#20242a;--muted:#6f7782;--primary:#63b3ff;--primary-ink:#13202c;--input-bg:#fff;--table-header-bg:#f5f7fa;--ok:#22824c;--danger:#c63c49;--flash-ok-bg:#edf8f1;--flash-ok-border:#b9e3c8;--flash-err-bg:#fff0f1;--flash-err-border:#efc0c5;--shadow:0 4px 18px rgba(15,23,42,.06)}
 html[data-theme="dark"]{--bg:#18191c;--surface:#23252a;--surface-2:#202226;--border:#34373d;--text:#f4f5f7;--muted:#9da3ad;--primary:#72b7ff;--primary-ink:#111820;--input-bg:#1b1d21;--table-header-bg:#202226;--ok:#6bd28d;--danger:#ff6d79;--flash-ok-bg:#1d3325;--flash-ok-border:#355b42;--flash-err-bg:#3b2225;--flash-err-border:#6a343a;--shadow:none}
@@ -24,7 +24,7 @@ html[data-theme="dark"]{--bg:#18191c;--surface:#23252a;--surface-2:#202226;--bor
 </head>
 <body>
 <header class="topbar">
-  <div class="brand"><a class="brand-link" href="#dashboard" aria-label="看店勢 DianInsight"><img class="brand-logo-img" src="DianInsight%20logo%E2%80%93transparent.PNG" alt="看店勢 DianInsight"></a><div class="brand-meta"><span class="env-badge">DEMO</span><span class="version-label">版本：V6</span></div></div>
+  <div class="brand"><a class="brand-link" href="#dashboard" aria-label="看店勢 DianInsight"><img class="brand-logo-img" src="DianInsight%20logo%E2%80%93transparent.PNG" alt="看店勢 DianInsight"></a><div class="brand-meta"><span class="env-badge">DEMO</span><span class="version-label">版本：V6.1</span></div></div>
   <button id="mobile-menu-toggle" type="button" class="mobile-menu-toggle" aria-expanded="false" aria-controls="mobile-nav">☰</button>
   <nav class="desktop-nav" id="desktop-nav"></nav>
   <div class="account"><button type="button" class="btn btn-ghost btn-sm locale-toggle">EN</button><button type="button" class="btn btn-ghost theme-toggle">☀️</button><span class="username">Jack</span><span class="role">admin</span><a href="/" class="btn btn-ghost logout">回介紹頁</a></div>
@@ -35,7 +35,7 @@ html[data-theme="dark"]{--bg:#18191c;--surface:#23252a;--surface-2:#202226;--bor
 const navItems=[['dashboard','儀表板'],['sales','銷售'],['rankings','排行榜'],['notifications','通知'],['recipients','收件人'],['organization','組織'],['security','安全紀錄'],['modules','模組']];
 const main=document.getElementById('main'),desktopNav=document.getElementById('desktop-nav'),mobileNav=document.getElementById('mobile-nav'),menuToggle=document.getElementById('mobile-menu-toggle');
 function navLinks(){return navItems.map(([p,l])=>`<a href="#${p}" data-page="${p}">${l}</a>`).join('')}
-desktopNav.innerHTML=navLinks();mobileNav.innerHTML=navLinks()+`<div class="mobile-menu-section"><button class="btn btn-ghost btn-sm locale-toggle">EN</button><button class="btn btn-ghost theme-toggle">☀️</button><a href="/" class="btn btn-ghost">回介紹頁</a></div>`;
+desktopNav.innerHTML=navLinks();mobileNav.innerHTML=navLinks()+`<div class="mobile-menu-section"><a href="/" class="btn btn-ghost">回介紹頁</a></div>`;
 menuToggle.onclick=()=>{const open=menuToggle.getAttribute('aria-expanded')==='true';menuToggle.setAttribute('aria-expanded',String(!open));mobileNav.classList.toggle('open',!open)};
 document.querySelectorAll('[data-page]').forEach(a=>a.onclick=e=>{e.preventDefault();render(a.dataset.page);mobileNav.classList.remove('open');menuToggle.setAttribute('aria-expanded','false')});
 function setActive(p){document.querySelectorAll('[data-page]').forEach(a=>a.classList.toggle('active',a.dataset.page===p))}
