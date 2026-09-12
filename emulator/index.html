@@ -33,11 +33,12 @@ html[data-theme="dark"]{--bg:#18191c;--surface:#23252a;--surface-2:#202226;--bor
 <main class="container" id="main"></main>
 <script>
 const navItems=[['dashboard','儀表板'],['sales','銷售'],['rankings','排行榜'],['notifications','通知'],['recipients','收件人'],['organization','組織'],['security','安全紀錄'],['modules','模組']];
-const main=document.getElementById('main'),desktopNav=document.getElementById('desktop-nav'),mobileNav=document.getElementById('mobile-nav'),menuToggle=document.getElementById('mobile-menu-toggle');
+const main=document.getElementById('main'),desktopNav=document.getElementById('desktop-nav'),mobileNav=document.getElementById('mobile-nav'),menuToggle=document.getElementById('mobile-menu-toggle'),brandLink=document.querySelector('.brand-link');
 function navLinks(){return navItems.map(([p,l])=>`<a href="#${p}" data-page="${p}">${l}</a>`).join('')}
 desktopNav.innerHTML=navLinks();mobileNav.innerHTML=navLinks()+`<div class="mobile-menu-section"><button class="btn btn-ghost btn-sm locale-toggle">EN</button><button class="btn btn-ghost theme-toggle">☀️</button><a href="/" class="btn btn-ghost">回介紹頁</a></div>`;
 menuToggle.onclick=()=>{const open=menuToggle.getAttribute('aria-expanded')==='true';menuToggle.setAttribute('aria-expanded',String(!open));mobileNav.classList.toggle('open',!open)};
 document.querySelectorAll('[data-page]').forEach(a=>a.onclick=e=>{e.preventDefault();render(a.dataset.page);mobileNav.classList.remove('open');menuToggle.setAttribute('aria-expanded','false')});
+brandLink.onclick=e=>{e.preventDefault();render('dashboard');mobileNav.classList.remove('open');menuToggle.setAttribute('aria-expanded','false')};
 function setActive(p){document.querySelectorAll('[data-page]').forEach(a=>a.classList.toggle('active',a.dataset.page===p))}
 function toggleTheme(){document.documentElement.dataset.theme=document.documentElement.dataset.theme==='dark'?'light':'dark';document.querySelectorAll('.theme-toggle').forEach(b=>b.textContent=document.documentElement.dataset.theme==='dark'?'☀️':'🌙')}
 document.querySelectorAll('.theme-toggle').forEach(b=>b.onclick=toggleTheme);
