@@ -62,6 +62,46 @@
   name="twitter:image:alt"
   content="看店勢 DianInsight — AI 多門市業績分析與營運管理平台"
 />
+
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://preview.dianinsight.com/#organization",
+      "name": "看店勢 DianInsight",
+      "url": "https://preview.dianinsight.com/",
+      "logo": "https://preview.dianinsight.com/dianinsight-og.png",
+      "sameAs": [
+        "https://github.com/nkhs9412235/dianinsight-preview"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://preview.dianinsight.com/#website",
+      "name": "看店勢 DianInsight",
+      "url": "https://preview.dianinsight.com/",
+      "inLanguage": "zh-Hant",
+      "publisher": { "@id": "https://preview.dianinsight.com/#organization" }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://preview.dianinsight.com/#product",
+      "name": "看店勢 DianInsight",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "url": "https://preview.dianinsight.com/",
+      "inLanguage": ["zh-Hant", "en"],
+      "description": "看店勢 DianInsight 是專為多門市、多區域管理打造的 AI 營運分析平台，整合每日業績、區域表現、門市排名、Excel 資料匯入、AI 營運分析與通知，協助主管快速掌握營運變化與真正值得關注的管理重點。"
+    }
+  ]
+}
+</script>
+
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
   <style>
@@ -187,27 +227,11 @@
     }
 
     .brand-mark {
-      width: 38px;
-      height: 38px;
-      border-radius: 12px;
-      position: relative;
-      background: linear-gradient(145deg,#80b2ff 0%,#4a87ff 48%,#65e9ff 100%);
-      box-shadow: 0 0 0 1px rgba(255,255,255,.16) inset, 0 10px 30px rgba(66,136,255,.28);
-      overflow: hidden;
-    }
-
-    .brand-mark::before {
-      content: "";
-      position: absolute;
-      bottom: 8px;
-      left: 9px;
-      width: 6px;
-      height: 12px;
-      border-radius: 999px;
-      background: rgba(7,16,29,.88);
-      box-shadow:
-        8px -7px 0 rgba(7,16,29,.88),
-        16px -15px 0 rgba(7,16,29,.88);
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: block;
+      object-fit: contain;
     }
 
     .brand-text {
@@ -1601,7 +1625,7 @@
   <div class="nav-shell">
     <nav class="nav glass" id="nav">
       <a href="#top" class="brand" aria-label="看店勢 DianInsight 首頁">
-        <span class="brand-mark" aria-hidden="true"></span>
+        <img class="brand-mark" src="/logo.png" alt="" aria-hidden="true">
         <span class="brand-text">
           <strong>看店勢</strong>
           <span>DianInsight</span>
@@ -1631,7 +1655,7 @@
           </div>
 
           <h1>
-            每天的數字，<br>
+            看店勢，讓每天的數字，<br>
             <span class="gradient-text">終於開始說人話。</span>
           </h1>
 
