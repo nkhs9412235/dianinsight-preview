@@ -101,6 +101,54 @@
   ]
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "看店勢是什麼？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "看店勢 DianInsight 是專為多門市、多區域品牌打造的 AI 營運分析平台，整合每日業績、區域表現、門市排名、Excel 資料匯入與 AI 營運分析，協助主管快速掌握營運變化。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "看店勢需要串接 POS 系統才能使用嗎？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "不需要。看店勢的核心流程是每天上傳試算表：上傳 Excel 檔案即可，系統會自動整理成乾淨的營運數字，不需要導入顧問或長時間的系統整合。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "看店勢支援哪些通知管道？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "看店勢支援 LINE 官方帳號、Telegram 與 Email 通知。每日營運摘要與異常提醒可排程自動推播到指定的 LINE 群組或 Telegram 群組。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "看店勢如何收費？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "看店勢採訂閱制，依公司規模與啟用的通知管道而定。歡迎透過官網預約企業導入諮詢，了解適合的方案。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "看店勢有試用或展示可以體驗嗎？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "有。官網提供產品互動展示（https://preview.dianinsight.com/emulator/），可在模擬環境中實際操作營運總覽、門市排名、AI 分析與通知排程等功能。"
+      }
+    }
+  ]
+}
+</script>
 
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
@@ -778,6 +826,34 @@
       text-transform:uppercase;
       margin-bottom:15px;
     }
+
+    .faq-list { display:flex; flex-direction:column; gap:14px; margin-top:34px; }
+    .faq-item { border-radius:16px; padding:6px 22px; }
+    .faq-item summary {
+      cursor:pointer;
+      font-size:17px;
+      font-weight:700;
+      padding:18px 0;
+      list-style:none;
+    }
+    .faq-item summary::-webkit-details-marker { display:none; }
+    .faq-item summary::after {
+      content:"+";
+      float:right;
+      color:var(--blue);
+      font-size:22px;
+      font-weight:400;
+      line-height:1.2;
+    }
+    .faq-item[open] summary::after { content:"–"; }
+    .faq-item p {
+      margin:0;
+      padding:0 0 20px;
+      color:var(--muted);
+      font-size:15.5px;
+      line-height:1.8;
+    }
+    .faq-item a { color:var(--blue); }
 
     .section h2,
     .coming-card h2 {
@@ -2287,6 +2363,34 @@
             role="status"
             aria-live="polite"
           ></div>
+        </div>
+      </div>
+    </section>
+    <section class="section" id="faq" aria-labelledby="faq-title">
+      <div class="container">
+        <div class="kicker">常見問題</div>
+        <h2 id="faq-title">關於看店勢，你可能想問</h2>
+        <div class="faq-list">
+          <details class="faq-item glass">
+            <summary>看店勢是什麼？</summary>
+            <p>看店勢 DianInsight 是專為多門市、多區域品牌打造的 AI 營運分析平台，整合每日業績、區域表現、門市排名、Excel 資料匯入與 AI 營運分析，協助主管快速掌握營運變化。</p>
+          </details>
+          <details class="faq-item glass">
+            <summary>需要串接 POS 系統才能使用嗎？</summary>
+            <p>不需要。看店勢的核心流程是每天上傳試算表：上傳 Excel 檔案即可，系統會自動整理成乾淨的營運數字，不需要導入顧問或長時間的系統整合。</p>
+          </details>
+          <details class="faq-item glass">
+            <summary>支援哪些通知管道？</summary>
+            <p>支援 LINE 官方帳號、Telegram 與 Email 通知。每日營運摘要與異常提醒可排程自動推播到指定的 LINE 群組或 Telegram 群組。</p>
+          </details>
+          <details class="faq-item glass">
+            <summary>如何收費？</summary>
+            <p>採訂閱制，依公司規模與啟用的通知管道而定。歡迎<a href="#enterprise-inquiry">預約企業導入諮詢</a>，了解適合的方案。</p>
+          </details>
+          <details class="faq-item glass">
+            <summary>有試用或展示可以體驗嗎？</summary>
+            <p>有。<a href="/emulator/">產品互動展示</a>提供完整的模擬環境，可實際操作營運總覽、門市排名、AI 分析與通知排程等功能。</p>
+          </details>
         </div>
       </div>
     </section>
